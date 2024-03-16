@@ -2,11 +2,10 @@
 
 namespace BasicWPFApp.WPF;
 
-public class RelayCommand<T> : ICommand
+public class RelayCommand : ICommand
 {
 	private Action? _execute;
-	private Action<T>? _execute2;
-	private Predicate<T>? _canExecute = null;
+	private Func<object>? _func;
 
 	public event EventHandler? CanExecuteChanged;
 
@@ -14,31 +13,51 @@ public class RelayCommand<T> : ICommand
 	{
 		_execute = action;
 	}
-	public RelayCommand(Action<T> action)
+	public RelayCommand(Func<object> action)
 	{
-		_execute2 = action;
-	}
-	public RelayCommand(Action action, Predicate<T> predicate)
-	{
-		_execute = action;
-		_canExecute = predicate;
-	}
-	public RelayCommand(Action<T> action, Predicate<T> predicate)
-	{
-		_execute2 = action;
-		_canExecute = predicate;
+		_func = action;
 	}
 
 	public bool CanExecute(object? parameter)
 	{
-		return parameter == null || _canExecute == null || _canExecute((T)parameter);
+		return true;
 	}
 
 	public void Execute(object? parameter)
 	{
-		if (parameter == null && _execute != null)
+		if (_execute != null)
 			_execute();
-		else if (parameter != null && _execute2 != null)
-			_execute2((T)parameter);
+		else if (_func != null)
+			_func();
+	}
+}
+
+public class RelayCommand<T> : ICommand
+{
+	private Action<T>? _execute;
+	private Func<T, object>? _func;
+
+	public event EventHandler? CanExecuteChanged;
+
+	public RelayCommand(Action<T> action)
+	{
+		_execute = action;
+	}
+	public RelayCommand(Func<T, object> action)
+	{
+		_func = action;
+	}
+
+	public bool CanExecute(object? parameter)
+	{
+		return true;
+	}
+
+	public void Execute(object? parameter)
+	{
+		if (_execute != null && parameter != null)
+			_execute((T)parameter);
+		else if (_func != null && parameter != null)
+			_func((T)parameter);
 	}
 }

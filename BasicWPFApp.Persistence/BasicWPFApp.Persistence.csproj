@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Ninject" Version="3.3.6">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BasicWPFApp.Core\BasicWPFApp.Core.csproj" />
+    <ProjectReference Include="..\BasicWPFApp.Core\BasicWPFApp.Core.csproj">
+      <TreatAsUsed>true</TreatAsUsed>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mediator\Pipelines\" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ internal class IocContainer
 {
 	private IKernel _kernel;
 
-    internal MainWindowViewModel MainWindowViewModel => _kernel.Get<MainWindowViewModel>();
+    public MainWindowViewModel MainWindowViewModel => _kernel.Get<MainWindowViewModel>();
 
     public IocContainer()
     {
