@@ -12,6 +12,8 @@
         DataContext="{Binding Source={StaticResource IocContainer}, Path=MainWindowViewModel}">
     <Grid>
         <StackPanel>
+            <Button Content="Show Window 2"
+                    Command="{Binding ShowWindow2Command}"/>
             <TextBox x:Name="tb"/>
             <Button Content="Create Order"
                     Command="{Binding CreateOrderCommand}"
