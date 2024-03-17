@@ -1,8 +1,8 @@
-﻿using BasicWPFApp.Core;
-using BasicWPFApp.Persistence;
+﻿using BasicWPFApp.Application;
+using BasicWPFApp.Domain;
 using MediatR;
 
-namespace BasicWPFApp.WPF;
+namespace BasicWPFApp.Presentation;
 
 internal class Window2ViewModel: ViewModel
 {
@@ -16,14 +16,14 @@ internal class Window2ViewModel: ViewModel
         _mediator = mediator;
         _messageBus = messageBus;
 
-        Orders = _mediator.Send(new GetOrdersQuery()).Result;
+        Orders = _mediator.Send(new GetAllOrdersQuery()).Result;
 
 		_messageBus.RegisterFor<OrderUpdateMessage>((msg) => UpdateOrders());
     }
 
     private void UpdateOrders()
     {
-        Orders = _mediator.Send(new GetOrdersQuery()).Result;
+        Orders = _mediator.Send(new GetAllOrdersQuery()).Result;
         NotifyPropertyChanged(nameof(Orders));
     }
 }

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BasicWPFApp.Core\BasicWPFApp.Domain.csproj" />
+    <ProjectReference Include="..\BasicWPFApp.Application\BasicWPFApp.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

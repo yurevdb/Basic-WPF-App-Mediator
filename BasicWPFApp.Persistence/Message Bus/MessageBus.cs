@@ -1,4 +1,6 @@
-﻿namespace BasicWPFApp.Persistence;
+﻿using BasicWPFApp.Application;
+
+namespace BasicWPFApp.Infrastructure;
 
 internal class MessageBus : IMessageBus
 {
@@ -13,7 +15,10 @@ internal class MessageBus : IMessageBus
 	{
 		var receivers = _receivers.GetValueOrDefault(message.GetType());
 		if (receivers == null)
+		{
 			await Task.FromResult(true);
+			return;
+		}
 
 		foreach (Action<IMessage> receiver in receivers!)
 			receiver(message);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
 
-namespace BasicWPFApp.WPF;
+namespace BasicWPFApp.Presentation;
 
 internal class ConfigurationModule : NinjectModule
 {

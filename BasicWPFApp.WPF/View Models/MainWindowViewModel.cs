@@ -1,10 +1,10 @@
-﻿using BasicWPFApp.Core;
-using BasicWPFApp.Persistence;
-using BasicWPFApp.WPF.Windows;
+﻿using BasicWPFApp.Application;
+using BasicWPFApp.Domain;
+using BasicWPFApp.Presentation.Windows;
 using MediatR;
 using System.Windows.Input;
 
-namespace BasicWPFApp.WPF;
+namespace BasicWPFApp.Presentation;
 
 internal class MainWindowViewModel : ViewModel
 {
@@ -24,8 +24,8 @@ internal class MainWindowViewModel : ViewModel
 
     private async Task CreateCommand(string title)
     {
-		await _mediator.Send(new SaveOrderCommand(new Order() { Title = title }));
-        Orders = await _mediator.Send(new GetOrdersQuery());
+		await _mediator.Send(new CreateOrderCommand(new Order() { Title = title }));
+        Orders = await _mediator.Send(new GetAllOrdersQuery());
         NotifyPropertyChanged(nameof(Orders));
     }
 

@@ -1,7 +1,8 @@
-﻿using BasicWPFApp.Persistence;
+﻿using BasicWPFApp.Application;
+using BasicWPFApp.Infrastructure;
 using Ninject;
 
-namespace BasicWPFApp.WPF;
+namespace BasicWPFApp.Presentation;
 
 internal class IocContainer
 {
@@ -12,6 +13,6 @@ internal class IocContainer
 
     public IocContainer()
     {
-        _kernel = new StandardKernel(new PersistenceModule(), new ConfigurationModule(), new ViewModelModule());
+        _kernel = new StandardKernel(new ApplicationModule(), new ConfigurationModule(), new ViewModelModule(), new InfrastructureModule());
     }
 }

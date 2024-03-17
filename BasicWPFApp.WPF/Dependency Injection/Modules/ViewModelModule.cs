@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
 
-namespace BasicWPFApp.WPF;
+namespace BasicWPFApp.Presentation;
 
 internal class ViewModelModule : NinjectModule
 {
