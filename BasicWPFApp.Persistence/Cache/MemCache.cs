@@ -30,4 +30,10 @@ internal class MemCache
 	{
 		return await Task.FromResult(_orders.Values.ToList());
 	}
+
+	public async Task Remove(Guid id)
+	{
+		_orders.Remove(id);
+		await Task.FromResult(true);
+	}
 }
